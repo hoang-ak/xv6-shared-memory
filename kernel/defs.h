@@ -102,6 +102,12 @@ int             either_copyout(int user_dst, uint64 dst, void *src, uint64 len);
 int             either_copyin(void *dst, int user_src, uint64 src, uint64 len);
 void            procdump(void);
 
+// shm.c
+void shminit(void);
+uint64 sys_shmdt(void);
+void shm_detach(struct proc*, uint64);
+void shm_cleanup_proc(struct proc*);
+
 // swtch.S
 void            swtch(struct context*, struct context*);
 

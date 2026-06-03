@@ -327,6 +327,7 @@ void
 kexit(int status)
 {
   struct proc *p = myproc();
+  shm_cleanup_proc(p);
 
   if(p == initproc)
     panic("init exiting");

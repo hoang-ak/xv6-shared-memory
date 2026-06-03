@@ -82,8 +82,16 @@ struct trapframe {
 enum procstate { UNUSED, USED, SLEEPING, RUNNABLE, RUNNING, ZOMBIE };
 
 // Per-process state
+#define MAX_ATTACH 16
+
+struct shm_attach {
+  int used;
+  int shmid;
+  uint64 va;
+};
 struct proc {
   struct spinlock lock;
+  struct shm_attach shm[MAX_ATTACH];
 
   // p->lock must be held when using these:
   enum procstate state;        // Process state
